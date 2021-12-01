@@ -34,7 +34,7 @@ const sites = [
         name: 'Inspiring Travel Scotland',
         address: 'https://www.inspiringtravelscotland.com/category/scotland/',
         base: '',
-        id: 'inspiringtravelscotland'
+        id: ''
     }
 ]
 
