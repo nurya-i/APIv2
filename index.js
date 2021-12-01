@@ -7,54 +7,34 @@ const app = express()               //abrir o express para ser utilizado
 
 const sites = [
     {
-        name: 'sapo',
-        address: 'https://www.sapo.pt/noticias/atualidade',
-        base: ''
+        name: 'CNN Travel',
+        address: 'https://edition.cnn.com/travel/destinations/scotland',
+        base: 'https://edition.cnn.com',
+        id: 'cnntravel'
     },
     {
-        name: 'sicnoticias',
-        address: 'https://sicnoticias.pt/mundo',
-        base: 'https://sicnoticias.pt'
+        name: 'European Best Destinations',
+        address: 'https://www.europeanbestdestinations.com/',
+        base: 'https://www.europeanbestdestinations.com/',
+        id: 'europeanbestdestinations'
     },
     {
-        name: 'jn',
-        address: 'https://www.jn.pt/mundo.html',
-        base: 'https://www.jn.pt'
+        name: 'BBC Travel',
+        address: 'https://www.bbc.com/travel/destinations/scotland',
+        base: 'https://www.bbc.com',
+        id: 'bbctravel'
     },
     {
-        name: 'dn',
-        address: 'https://www.dn.pt/tag/coronavirus.html',
-        base: 'https://www.dn.pt'
+        name: 'Planetware',
+        address: 'https://www.planetware.com/tourist-attractions/scotland-sco.htm',
+        base: 'https://www.planetware.com/',
+        id: 'planetware'
     },
     {
-        name: 'noticiasaominuto',
-        address: 'https://www.noticiasaominuto.com/',
-        base: ''
-    },
-    {
-        name: 'observador',
-        address: 'https://observador.pt/ultimas/',
-        base: ''
-    },
-    {
-        name: 'publico',
-        address: 'https://www.publico.pt/coronavirus',
-        base: ''
-    },
-    {
-        name: 'tvi24',
-        address: 'https://tvi24.iol.pt/tag/covid-19',
-        base: 'https://tvi24.iol.pt'
-    },
-    {
-        name: 'cm',
-        address: 'https://www.cmjornal.pt/coronavirus/mundo',
-        base: 'https://www.cmjornal.pt'
-    },
-    {
-        name: 'dn',
-        address: 'https://www.dnoticias.pt/agregador/coronavirus/',
-        base: ''
+        name: 'Inspiring Travel Scotland',
+        address: 'https://www.inspiringtravelscotland.com/category/scotland/',
+        base: '',
+        id: 'inspiringtravelscotland'
     }
 ]
 
@@ -66,8 +46,8 @@ sites.forEach(site => {
             const html = response.data
             const $ = cheerio.load(html)
 
-            $('a:contains("Covid")', html).each(function() {
-                const title = $(this).text()
+            $('a:contains("Scotland")', html).each(function() {
+                const title = $(this).text().replace(/\t/g,'').replace(/\n/g,'');
                 const url = $(this).attr('href')
 
                 articles.push({
@@ -80,19 +60,20 @@ sites.forEach(site => {
 })
 
 app.get('/', (req, res) => {
-    res.json('Welcome to my Covid news API in Portuguese')
+    res.json('Welcome to my travel tips in Scotland API.')
 })
 
-app.get('/news', (req, res) => {
+app.get('/articles', (req, res) => {
     res.json(articles)   
 })
 
-app.get('/news/:siteId', (req,res) => {
+app.get('/articles/:siteId', (req,res) => {
     // console.log(req.params.siteId)       mostra os params na consola
     const siteId = req.params.siteId
 
-    const siteAddress = sites.filter(site => site.name == siteId)[0].address
-    const siteBase = sites.filter(site => site.name == siteId)[0].base
+    const siteAddress = sites.filter(site => site.id == siteId)[0].address
+    const siteBase = sites.filter(site => site.id == siteId)[0].base
+    const siteName = sites.filter(site => site.id == siteId)[0].name
 
     axios.get(siteAddress)
         .then(response => {
@@ -100,13 +81,13 @@ app.get('/news/:siteId', (req,res) => {
             const $ = cheerio.load(html)
             const specificArticles = []
 
-            $('a:contains("Covid")', html).each(function() {
-                const title = $(this).text()
+            $('a:contains("Scotland")', html).each(function() {
+                const title = $(this).text().replace(/\t/g,'').replace(/\n/g,'')
                 const url = $(this).attr('href')
                 specificArticles.push({
                     title,
                     url: siteBase + url,
-                    source: siteId
+                    source: siteName
                 })
             })
             res.json(specificArticles)
