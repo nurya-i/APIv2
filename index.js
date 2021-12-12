@@ -2,8 +2,16 @@ const PORT = process.env.PORT || 8000       //fazer deploy no heroku
 const express = require('express')
 const axios = require('axios')
 const cheerio = require('cheerio')
-const { response } = require('express')
 const app = express()               //abrir o express para ser utilizado
+const bcrypt = require('bcrypt')
+const cors = require('cors')
+app.use(express.json()); // Faz o parse (validação e interpretação) de solicitações do tipo application/json
+app.use(express.urlencoded({ extended: true })); // Faz o parse do conteúdo tipo application/x-www-form-urlencoded
+app.use(cors())
+
+require('./routes/routes')(app);
+
+
 
 const sites = [
     {
@@ -15,7 +23,7 @@ const sites = [
     {
         name: 'European Best Destinations',
         address: 'https://www.europeanbestdestinations.com/',
-        base: 'https://www.europeanbestdestinations.com/',
+        base: 'https://www.europeanbestdestinations.com',
         id: 'europeanbestdestinations'
     },
     {
@@ -27,20 +35,21 @@ const sites = [
     {
         name: 'Planetware',
         address: 'https://www.planetware.com/tourist-attractions/scotland-sco.htm',
-        base: 'https://www.planetware.com/',
+        base: 'https://www.planetware.com',
         id: 'planetware'
     },
     {
         name: 'Inspiring Travel Scotland',
         address: 'https://www.inspiringtravelscotland.com/category/scotland/',
         base: '',
-        id: ''
+        id: 'its'
     }
 ]
 
 const articles = []
+const users = []
 
-sites.forEach(site => {
+const allArt = sites.forEach(site => {
     axios.get(site.address)
         .then(response => {
             const html = response.data
@@ -58,6 +67,10 @@ sites.forEach(site => {
             })
         })
 })
+
+app.use(express.static('public')); //Liga a página html a ser apresentada
+app.use(express.json())
+
 
 app.get('/', (req, res) => {
     res.json('Welcome to my travel tips in Scotland API.')
@@ -95,3 +108,4 @@ app.get('/articles/:siteId', (req,res) => {
 })
 
 app.listen(PORT, () => console.log(`Servidor a correr na porta ${PORT}`))
+

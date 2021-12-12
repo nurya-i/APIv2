@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scotland Tips</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>Scotland Tips</h1>
+
+    <nav class="navigation">
+      <!--Botão para mostrar Artigos-->
+      <button type="button" onclick="showFeed()">
+        Show all articles
+      </button>
+      </br>
+      </br>
+      <p>Browse specific websites</p>
+
+      <!--Botão para CNN-->
+      <button type="button" onclick="showCNN()">
+        CNN Travel
+      </button>
+
+      <!--Botão para EBD-->
+      <button type="button" onclick="showEBD()">
+        European Best Destination
+      </button>
+
+      <!--Botão para BBC-->
+      <button type="button" onclick="showBBC()">
+        BBC Travel
+      </button>
+
+      <!--Botão para Planetware-->
+      <button type="button" onclick="showPlanetware()">
+        Planetware
+      </button>
+
+      <!--Botão para ItS-->
+      <button type="button" onclick="showITS()">
+        Inspire Travel Scotland
+      </button>
+
+    </nav>
+  </div>
+
+  <!--Botão de Registo-->
+  <button type="button" class="btn btn-primary mx-auto d-block mt-5" id="btnModalRegister">
+    Register
+  </button>
+
+  <!--Botão de Login-->
+  <button type="button" class="btn btn-primary mx-auto d-block mt-5" id="btnModalLogin">
+    Login
+  </button>
+
+  <!--Botão para Logoff-->
+  <button type="button" class="btn btn-dark mx-auto d-block mt-5" id="btnLogoff">
+    Logoff
+  </button>
+
+  <!--Modal para Registo-->
+  <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Register new user
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">
+              E-mail</label>
+            <input type="email" class="form-control" id="emailRegister" name="emailRegister" placeholder="E-Mail" />
+            <p id="emailRegisterError"></p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">
+              Password</label>
+            <input type="password" class="form-control" id="pwdRegister" name="pwdRegister" placeholder="Password" />
+            <p id="registerStatus"></p>
+          </div>
+          <div class="modal-footer d-block">
+            <button id="btnCancelRegister" class="btn btn-warning float-end" data-bs-dismiss="modal">
+              Cancel
+            </button>
+            <button class="btn btn-success float-end" id="btnSubmitRegister" onclick="validateRegister()">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--Modal para Login-->
+  <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            User login
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnLoginClose">
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <!--escolhe o espaço do padding-->
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="emailLogin" name="emailLogin" placeholder="E-mail" />
+            <p id="emailLoginError"></p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" id="pwdLogin" name="pwdLogin" placeholder="Password" />
+            <p id="pwdLoginError"></p>
+            <p id="loginStatus"></p>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe" />
+            <label class="form-check-label" for="rememberMe">
+              Remember me</label>
+          </div>
+          <div class="modal-footer d-block">
+            <p id="nRegister" class="float-start">
+              New user? <a href="#">Create an account</a>
+            </p>
+            <button class="btn btn-warning float-end" data-bs-dismiss="modal">
+              Cancel
+            </button>
+            <button class="btn btn-success float-end" id="btnSubmitLogin" onclick="validateLogin()">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="feed"></div>
+  <div id="cnn"></div>
+  <div id="ebd"></div>
+  <div id="bbc"></div>
+  <div id="planetware"></div>
+  <div id="its"></div>
+
+  </br>
+
+  <h2>
+    Welcome to my Scotland Tips API!
+  </h2>
+
+  <section aria-label="Scotland Photos">
+    <div class="carousel" data-carousel>
+      <button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
+      <button class="carousel-button next" data-carousel-button="next">&#8658;</button>
+      
+      <ul data-slides>
+        <li class="slide" data-active>
+          <img
+            src="https://cdn.cnn.com/cnnnext/dam/assets/170606121333-scotland---travel-destination---shutterstock-512226913.jpg"
+            alt="Eilean Donan">
+        </li>
+        <li class="slide">
+          <img src="https://www.visitscotland.com/cms-images/about/fairy-pools-skye?view=Standard" alt="Fairy Pools">
+        </li>
+        <li class="slide">
+          <img
+            src="https://cdn2.wanderlust.co.uk/media/1492/lists-9-things-you-must-do-in-scotland.jpg?anchor=center&mode=crop&width=1200&height=0&rnd=131481460760000000"
+            lt="Coo">
+        </li>
+        <li class="slide">
+          <img src="https://www.collinsdictionary.com/images/full/edinburgh_112513559_1000.jpg" alt="Edinburgh">
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  </br>
+  <p>
+    Click on a button to show the articles, click again to hide them. </br>
+    You can login using email user99@mail.com, password: 123456.<br>
+    
+    
+    Other options:<br>
+    Run API <a href="https://scotlandtips.herokuapp.com/"> here</a> <br>
+    /articles to see all articles. <br>
+    /articles/:siteId to filter per site <br>
+    Available sites: cnntravel, europeanbestdestinations, bbctravel, planetware, inspiringtravelscotland <br>
+  </p>
+
+
+
+</body>
+<script src="https://www.markuptag.com/bootstrap/5/js/bootstrap.bundle.min.js"></script>
+<script src="js/user.js"></script>
+
+</html>

@@ -1,0 +1,6 @@
+{"_id":"user1@mail.com","confirm":0,"password":"$2b$10$Em7I/NWVyVHFfPhzCmsAIuPqnsV.9h/oo5lssMbebhP4TUnqHpHtq","confirmationToken":"eyJhbGciOiJIUzI1NiJ9.dXNlcjFAbWFpbC5jb20.hoMZiCiuR_f2EO8rgBNaxaSRWlWYo7x463iLvMMUaAY"}
+{"_id":"user2@mail.com","confirm":0,"password":"$2b$10$f9O/hU2i0OfwtVGjAdTBbOZBTkus.s45YUYGGtzCzhE0aWU4B6P/a","confirmationToken":"eyJhbGciOiJIUzI1NiJ9.dXNlcjJAbWFpbC5jb20.syHIoO11PYG9srBz6Xw3toYdkLuwGV-v7kvGEHQwtDE"}
+{"_id":"user33@mail.com","confirm":0,"password":"$2b$10$rORCRx20QsPuI/nJEMQ0OeReyBS96IxNl2pKauEASdd85qwq9OIgm","confirmationToken":"eyJhbGciOiJIUzI1NiJ9.dXNlcjMzQG1haWwuY29t.zsozFW66jWbyd97lBfhVyt3E8aHw2F1MDZ89Xpe45BM"}
+{"_id":"user3@mail.com","confirm":1,"password":"$2b$10$SYeOXN1Dz5xOANE.MQWPle9y3mp6tBquaZev8jAW7tFFh1D23LOJG","confirmationToken":"eyJhbGciOiJIUzI1NiJ9.dXNlcjNAbWFpbC5jb20.F9aeX3kCkXaETYI9iRdsT2E9VDdSI_OxJ-sAGYPBx44"}
+{"_id":"user99@mail.com","confirm":1,"password":"$2b$10$HWYNvq17yVJJh2uC1O6uoOOL8AQTl8qNUmS08wikJbZZwjxPHfdrW","confirmationToken":"eyJhbGciOiJIUzI1NiJ9.dXNlcjk5QG1haWwuY29t.bZuiICaIH9NnAfs5waA1gCtc6BOkSDYkuW3t2HWTX18"}
+{"_id":"user@mail.com","confirm":0,"password":"$2b$10$CeZ8U1WGnv7MS3PX0NBDHOhzbgbHaaA.3Mio4bmquRwQvzrI5H6oi","confirmationToken":"eyJhbGciOiJIUzI1NiJ9.dXNlckBtYWlsLmNvbQ.JEw68AJJW3VolcjEUcb82-yVsydiizwOeMxnhDvlOqg"}
